@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Run API",
+        "type": "shell",
+        "command": "dotnet run --project C:/Viknesh/Project/CustomerService/CustomerService.csproj",
+        "isBackground": true,
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": "Run UI",
+        "type": "shell",
+        "command": "dotnet run --project C:/Viknesh/Project/PinewoodTask.UI/PinewoodTask.UI.csproj",
+        "dependsOn": "Run API",
+        "problemMatcher": "$msCompile"
+      }
+    ]
+  }
+  

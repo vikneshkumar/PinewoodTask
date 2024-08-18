@@ -1,0 +1,81 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+
+            </div>
+            <div>
+                <form method="post">                    
+                    <div>
+                        <label asp-for="customer.CustomerID"></label>
+                        <input asp-for="customer.CustomerID" />
+                    </div>
+                    <div>
+                        <label asp-for="customer.CustomerName"></label>
+                        <input asp-for="customer.CustomerName" />
+                    </div>
+                    <div>
+                        <label asp-for="customer.Location"></label>
+                        <input asp-for="customer.Location" />
+                    </div>
+                     <button type="submit" class="btn btn-primary">@Model.SubmitButtonText</button> 
+                </form>
+            </div>
+            <div>
+
+            </div>
+        </div>
+    </div>
+
+    <div>
+       
+        <table class="table">
+            <thead>
+                <th>
+                    Customer ID
+                </th>
+                <th>
+                    Customer Name
+                </th>
+                <th>
+                    Location
+                </th>
+                <th></th>
+            </thead>            
+            <tbody>
+                @if(Model.customerList != null && Model.customerList.Count() > 0)
+                {
+                    @foreach(var item in Model.customerList)
+                    {
+                        <tr>
+                            <td>@item.CustomerID</td>
+                            <td>@item.CustomerName</td>
+                            <td>@item.Location</td>
+                            <td>                            
+                                <a asp-page="./Index" asp-route-id="@item.CustomerID" class="btn btn-primary">Edit</a>
+                                <form method="post">
+                                @* <a asp-page-handler="Delete" asp-route-id="@item.CustomerID" class="btn btn-danger">Delete</a> *@
+                                <button class="btn btn-danger" type="submit" asp-route-id="@item.CustomerID" asp-page-handler="Delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else{
+                    <p>No Records found.</p>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
